@@ -12,18 +12,18 @@ export class NavComponent implements OnInit {
   constructor(private loginService:LoginService, private router:Router) { }
 
   ngOnInit(): void {
-    //this.loginService.currentUserLoginOn.subscribe(
-    //  {
-    //    next:(userLoginOn) => {
-    //      this.userLoginOn=userLoginOn;
-    //    }
-    //  }
-    //)
+    this.loginService.currentUserLoginOn.subscribe(
+      {
+        next:(userLoginOn) => {
+          this.userLoginOn=userLoginOn;
+        }
+      }
+    )
   }
 
   logout()
   {
-    //this.loginService.logout();
-    //this.router.navigate(['/inicio'])
+    this.loginService.logout();
+    this.router.navigate(['/inicio'])
   }
 }
