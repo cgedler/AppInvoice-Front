@@ -2,14 +2,14 @@
   <p class="text-danger">{{loginError}}</p>
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Email</label>
-    <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">  
-      <div *ngIf="email.invalid && (email.dirty || email.touched)"
+    <input formControlName="username" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">  
+      <div *ngIf="username.invalid && (username.dirty || username.touched)"
           class="text-danger">
-          <div *ngIf="email.errors?.['required']">
-              El Email es requerido.
+          <div *ngIf="username.errors?.['required']">
+            Email is required.
           </div>
-          <div *ngIf="email.errors?.['email']">
-              El Email debe tener un formato válido.
+          <div *ngIf="username.errors?.['username']">
+            The email must have a valid format.
           </div>
       </div>
   </div>
@@ -19,7 +19,7 @@
       <div *ngIf="password.invalid && (password.dirty || password.touched)"
           class="text-danger">
           <div *ngIf="password.errors?.['required']">
-              El Password es requerido.
+            Password is required.
           </div>
       </div> 
   </div>

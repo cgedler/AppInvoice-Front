@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
 
   loginError:string = "";
   loginForm = this.formBuilder.group({
-    email:['',[Validators.required,Validators.email]],
+    username:['',[Validators.required,Validators.email]],
     password: ['',Validators.required],
   })
   
@@ -23,8 +23,8 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  get email(){
-    return this.loginForm.controls['email'];
+  get username(){
+    return this.loginForm.controls['username'];
   }
 
   get password()

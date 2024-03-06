@@ -11,8 +11,8 @@ import { LoginComponent } from './auth/login/login.component';
 import { FormsModule} from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-//import { JwtInterceptorService } from './services/auth/jwt-interceptor.service';
-//import { ErrorInterceptorService } from './services/auth/error-interceptor.service';
+import { JwtInterceptorService } from './auth/login/jwt-interceptor.service';
+import { ErrorInterceptorService } from './auth/login/error-interceptor.service';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { NavComponent } from './shared/nav/nav.component';
 import { FooterComponent } from './shared/footer/footer.component';
@@ -42,8 +42,8 @@ import { RegisterComponent } from './auth/register/register.component';
     FontAwesomeModule
   ],
   providers: [
-    //{provide:HTTP_INTERCEPTORS,useClass:JwtInterceptorService,multi:true},
-    //{provide:HTTP_INTERCEPTORS,useClass:ErrorInterceptorService,multi:true}
+    {provide:HTTP_INTERCEPTORS,useClass:JwtInterceptorService,multi:true},
+    {provide:HTTP_INTERCEPTORS,useClass:ErrorInterceptorService,multi:true}
   ],
   bootstrap: [AppComponent]
 })
