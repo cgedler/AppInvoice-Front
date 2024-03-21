@@ -4,13 +4,18 @@ import { LoginComponent } from './auth/login/login.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { HomeComponent } from './pages/home/home.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { CategoryComponent } from './pages/category/category.component';
+import { FormCategoryComponent } from './pages/category/form-category.component';
 
 const routes: Routes = [
   //{path:'',redirectTo:'/inicio', pathMatch:'full'},
   {path:'',component:HomeComponent},
   {path:'dashboard',component:DashboardComponent},
   {path:'login',component:LoginComponent},
-  {path:'register',component:RegisterComponent}
+  {path:'register',component:RegisterComponent},
+  {path:'category',component:CategoryComponent},
+  {path:'category/form',component:FormCategoryComponent},
+  {path:'category/form/:id',component:FormCategoryComponent}
 ];
 
 @NgModule({

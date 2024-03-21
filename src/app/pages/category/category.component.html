@@ -1,0 +1,37 @@
+<app-header></app-header>
+<app-nav></app-nav>
+<div class="container">
+<p *ngIf="!userLoginOn" class="alert alert-danger">Usuario NO autenticado</p>
+<p *ngIf="userLoginOn" class="alert alert-success">Usuario Autenticado</p>
+
+<h2>Categories</h2>
+
+<button class="btn btn-success" type="button" [routerLink]="['/category/form']">New</button> 
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Description</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let category of categories; let i=index">
+            <th scope="row">{{category.id}}</th>
+            <td>{{category.description}}</td>
+            <td>
+              <button type="button" name="button" class="btn btn-primary" [routerLink]="['/category/form/', category.id]">Edit</button>
+            </td>
+            <td>
+              <button type="button" name="button" class="btn btn-danger" (click)="delete(category)">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+</div>
+<app-footer></app-footer>
+

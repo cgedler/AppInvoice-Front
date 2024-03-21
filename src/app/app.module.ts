@@ -20,6 +20,8 @@ import { HeaderComponent } from './shared/header/header.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { CategoryComponent } from './pages/category/category.component';
+import { FormCategoryComponent } from './pages/category/form-category.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { RegisterComponent } from './auth/register/register.component';
     LoginComponent, 
     HomeComponent,
     ProfileComponent,
-    RegisterComponent
+    RegisterComponent,
+    CategoryComponent,
+    FormCategoryComponent
   ],
   imports: [
     BrowserModule,
