@@ -1,24 +1,61 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Ejemplo Login</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+ <!-- Fixed navbar -->
+ <nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" routerLink="/category">Categories</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" routerLink="/">Portfolio</a>
-          </li>
-          <li *ngIf="!userLoginOn" class="nav-item">
-            <a class="nav-link" routerLink="/iniciar-sesion">Iniciar Sesión</a>
-          </li>
-          <li *ngIf="userLoginOn" class="nav-item">
-            <a class="nav-link" (click)="logout()"  routerLink="/home">Cerrar Sesión</a>
-          </li>
-        </ul>
-      </div>
+      <a class="navbar-brand" href="#">App Invoice</a>
     </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Accounts Receivable <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Billing</a></li>
+            <li><a href="#">Customers</a></li>
+            <li><a href="#">Sellers</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Accounts Payable <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Suppliers</a></li>
+            <li><a href="#">Shopping</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Finance <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Bank</a></li>
+            <li><a href="#">Taxes</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Inventory <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a routerLink="">Items</a></li>
+            <li><a routerLink="/category">Category</a></li>
+          </ul>
+        </li>
+
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li *ngIf="!userLoginOn">
+          <a routerLink="/iniciar-sesion">Log in</a>
+        </li>
+        <li><a (click)="logout()"  routerLink="/home">Logout</a></li>
+        <!-- <li class="active"><a href="./">Fixed top <span class="sr-only">(current)</span></a></li> -->
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
 </nav>
+<!-- <a class="nav-link active" routerLink="/category">Categories</a> -->
+<!-- <a class="nav-link active" routerLink="/">Portfolio</a> -->
+
+
+

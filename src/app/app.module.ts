@@ -22,6 +22,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { CategoryComponent } from './pages/category/category.component';
 import { FormCategoryComponent } from './pages/category/form-category.component';
+import { DataTablesModule } from 'angular-datatables';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { FormCategoryComponent } from './pages/category/form-category.component'
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    DataTablesModule
   ],
   providers: [
     {provide:HTTP_INTERCEPTORS,useClass:JwtInterceptorService,multi:true},

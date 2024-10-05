@@ -12,7 +12,7 @@ export class CategoryService {
   constructor(private http:HttpClient) { }
 
   getAll():Observable<Category[]> {
-    return this.http.get<Category[]>(environment.urlHost + "item/category");
+    return this.http.get<Category[]>(environment.urlHost + "item/category/");
   }
 
   getById(id:number):Observable<Category> {

@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { LoginService } from 'src/app/auth/login/login.service';
 import { Category } from './category';
 import { CategoryService } from './category.service';
+
+declare var $: (arg0: any) => ElementRef<any>;
 
 @Component({
   selector: 'app-category',
@@ -14,11 +16,16 @@ export class CategoryComponent implements OnInit {
 
   categories:Category[]=[];
 
+  @ViewChild('dataTable') table!: ElementRef;
+  dataTable: any;
+
   constructor(
     private loginService:LoginService,
     private categoryService:CategoryService) { }
 
   ngOnInit(): void {
+    //this.dataTable = $(this.table.nativeElement);
+    //this.dataTable.dataTable();
     this.loginService.currentUserLoginOn.subscribe({
       next:(userLoginOn) => {
         this.userLoginOn=userLoginOn;
