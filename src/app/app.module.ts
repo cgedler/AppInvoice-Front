@@ -22,7 +22,9 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { CategoryComponent } from './pages/category/category.component';
 import { FormCategoryComponent } from './pages/category/form-category.component';
-import { DataTablesModule } from 'angular-datatables';
+import { MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
+
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { DataTablesModule } from 'angular-datatables';
     ReactiveFormsModule,
     HttpClientModule,
     FontAwesomeModule,
-    DataTablesModule
+    MatTableModule,
+    MatButtonModule
+
   ],
   providers: [
     {provide:HTTP_INTERCEPTORS,useClass:JwtInterceptorService,multi:true},

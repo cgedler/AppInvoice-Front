@@ -12,14 +12,16 @@ import { Router } from '@angular/router';
 export class LoginService {
 
   currentUserLoginOn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  currentUserData: BehaviorSubject<String> =new BehaviorSubject<String>("");
+  currentUserData: BehaviorSubject<String> = new BehaviorSubject<String>("");
+
+  currentUserName:String="";
  
   constructor(private http: HttpClient, private router:Router) {
-    this.currentUserLoginOn=new BehaviorSubject<boolean>(sessionStorage.getItem("token")!=null);
-    this.currentUserData=new BehaviorSubject<String>(sessionStorage.getItem("token") || "");
+    this.currentUserLoginOn = new BehaviorSubject<boolean>(sessionStorage.getItem("token")!=null);
+    this.currentUserData = new BehaviorSubject<String>(sessionStorage.getItem("token") || "");
   }
 
-  login(credentials:LoginRequest):Observable<any>{
+  login(credentials:LoginRequest):Observable<any> {
     console.error(credentials);
     return this.http.post<any>(environment.urlHost+"auth/login",credentials).pipe(
       tap( (userData) => {
@@ -39,12 +41,12 @@ export class LoginService {
 
   private handleError(error:HttpErrorResponse){
     if(error.status===0){
-      console.error('Se ha producio un error ', error.error);
+      console.error('An error has occurred ', error.error);
     }
     else{
-      console.error('Backend retornó el código de estado ', error);
+      console.error('Backend returned status code ', error);
     }
-    return throwError(()=> new Error('Algo falló. Por favor intente nuevamente.'));
+    return throwError(()=> new Error('Something went wrong. Please try again.'));
   }
 
   get userData():Observable<String>{
@@ -58,4 +60,9 @@ export class LoginService {
   get userToken():String{
     return this.currentUserData.value;
   }
+
+  get userName():String {
+    return this.currentUserName;
+  }
+
 }

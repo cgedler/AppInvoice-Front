@@ -44,16 +44,17 @@ export class LoginComponent implements OnInit {
           this.loginError=errorData;
         },
         complete: () => {
-          console.info("Login completo");
+          console.info("Complete login");
           this.router.navigateByUrl('/dashboard');
           this.loginForm.reset();
+          this.loginService.userName = this.loginForm.username.value;
         }
       })
 
     }
     else{
       this.loginForm.markAllAsTouched();
-      alert("Error al ingresar los datos.");
+      alert("Error when entering data.");
     }
   }
 

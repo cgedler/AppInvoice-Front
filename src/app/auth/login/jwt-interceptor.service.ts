@@ -11,10 +11,10 @@ export class JwtInterceptorService implements HttpInterceptor {
   constructor(private loginService:LoginService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    let token:String=this.loginService.userToken;
+    let token:String = this.loginService.userToken;
 
     if (token!=""){
-      req=req.clone(
+      req = req.clone(
         {
           setHeaders: {
             'Content-Type': 'application/json; charset=utf-8',

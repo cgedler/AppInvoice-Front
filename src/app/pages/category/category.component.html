@@ -1,106 +1,36 @@
 <app-header></app-header>
 <app-nav></app-nav>
-<div class="container">
-
+<div class="container content">
+    
 <h2>Categories</h2>
 
-<button class="btn btn-success" type="button" [routerLink]="['/category/form']">New</button> 
+<button class="btn btn-success" type="button" [routerLink]="['/category/form']"><fa-icon [icon]="['fas', 'plus']"></fa-icon> New</button> 
 
-<table datatable class="row-border hover">
+<!-- <button mat-button>boton material</button> -->
+
+
+<table id="myTable" class="table table-striped">
   <thead>
-    <tr>
-      <th>ID</th>
-      <th>First name</th>
-      <th>Last name</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1</td>
-      <td>Foo</td>
-      <td>Bar</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>Someone</td>
-      <td>Youknow</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>Iamout</td>
-      <td>Ofinspiration</td>
-    </tr>
-    <tr>
-      <td>4</td>
-      <td>Yoda</td>
-      <td>Skywalker</td>
-    </tr>
-    <tr>
-      <td>5</td>
-      <td>Patrick</td>
-      <td>Dupont</td>
-    </tr>
-    <tr>
-      <td>6</td>
-      <td>Barack</td>
-      <td>Obama</td>
-    </tr>
-    <tr>
-      <td>7</td>
-      <td>François</td>
-      <td>Holland</td>
-    </tr>
-    <tr>
-      <td>8</td>
-      <td>Michel</td>
-      <td>Popo</td>
-    </tr>
-    <tr>
-      <td>9</td>
-      <td>Chuck</td>
-      <td>Norris</td>
-    </tr>
-    <tr>
-      <td>10</td>
-      <td>Simon</td>
-      <td>Robin</td>
-    </tr>
-    <tr>
-      <td>11</td>
-      <td>Louis</td>
-      <td>Lin</td>
-    </tr>
-    <tr>
-      <td>12</td>
-      <td>Zelda</td>
-      <td>Link</td>
-    </tr>
-  </tbody>
-</table>
-
-
-<table id="example" class="display" style="width:100%">
-    <thead>
       <tr>
-        <th scope="col">#</th>
-        <th scope="col">Description</th>
-        <th>Actions</th>
+        <th style="width:10%">#</th>
+        <th style="width:70%">Description</th>
+        <th style="width:20%">Actions</th>
       </tr>
     </thead>
     <tbody>
         <tr *ngFor="let category of categories; let i=index">
-            <th scope="row">{{category.id}}</th>
+            <td>{{category.id}}</td>
             <td>{{category.description}}</td>
-            <td>
-              <button type="button" name="button" class="btn btn-primary" [routerLink]="['/category/form/', category.id]">Edit</button>
-            </td>
-            <td>
-              <button type="button" name="button" class="btn btn-danger" (click)="delete(category)">Delete</button>
+            <td with="20">
+              <button type="button" name="button" class="btn btn-primary" [routerLink]="['/category/form/', category.id]"><fa-icon [icon]="['fas', 'pencil']"></fa-icon> Edit</button>
+           
+              <button type="button" name="button" class="btn btn-danger" (click)="delete(category)"><fa-icon [icon]="['fas', 'trash']"></fa-icon> Delete</button>
             </td>
         </tr>
     </tbody>
 </table>
 
 </div>
+
 <app-footer></app-footer>
 

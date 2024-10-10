@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/auth/login/login.service';
-//import { User } from 'src/app/services/auth/user';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,6 +9,9 @@ import { LoginService } from 'src/app/auth/login/login.service';
 export class DashboardComponent implements OnInit {
   
   userLoginOn:boolean=false;
+
+  username:String="";
+
   constructor(private loginService:LoginService) { }
 
   ngOnInit(): void {
@@ -19,6 +21,9 @@ export class DashboardComponent implements OnInit {
       }
     });
 
+    this.username = this.loginService.currentUserName;
+
   }
+
 
 }
