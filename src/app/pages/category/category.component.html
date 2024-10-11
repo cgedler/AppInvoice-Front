@@ -1,4 +1,3 @@
-<app-header></app-header>
 <app-nav></app-nav>
 <div class="container content">
     
@@ -9,7 +8,7 @@
 <!-- <button mat-button>boton material</button> -->
 
 
-<table id="myTable" class="table table-striped">
+<table datatable [dtOptions]="dtOptions" class="table table-striped table-bordered">
   <thead>
       <tr>
         <th style="width:10%">#</th>
@@ -33,4 +32,5 @@
 </div>
 
 <app-footer></app-footer>
+
 

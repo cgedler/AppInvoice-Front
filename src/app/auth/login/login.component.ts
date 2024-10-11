@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { FormControl } from '@angular/forms';
-import { LoginService } from 'src/app/auth/login/login.service';
-import { LoginRequest } from './LoginRequest';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginService } from './login.service';
+import { LoginRequest } from './LoginRequest';
+
 
 @Component({
   selector: 'app-login',
@@ -11,15 +11,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  
   loginError:string = "";
-  loginForm = this.formBuilder.group({
+  loginForm:FormGroup;
+
+  constructor(private formBuilder:FormBuilder, private router:Router, private loginService: LoginService) { 
+    this.loginForm = this.formBuilder.group({
     username:['',[Validators.required,Validators.email]],
     password: ['',Validators.required],
   })
+  } 
   
-  constructor(private formBuilder:FormBuilder, private router:Router, private loginService: LoginService) { } 
-
   ngOnInit(): void {
   }
 
@@ -47,7 +49,6 @@ export class LoginComponent implements OnInit {
           console.info("Complete login");
           this.router.navigateByUrl('/dashboard');
           this.loginForm.reset();
-          this.loginService.userName = this.loginForm.username.value;
         }
       })
 
@@ -57,5 +58,4 @@ export class LoginComponent implements OnInit {
       alert("Error when entering data.");
     }
   }
-
 }

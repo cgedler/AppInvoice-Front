@@ -4,38 +4,36 @@ import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontaweso
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
 import { fab } from '@fortawesome/free-brands-svg-icons';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { LoginComponent } from './auth/login/login.component';
+import { RouterModule } from '@angular/router';
 import { FormsModule} from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { JwtInterceptorService } from './auth/login/jwt-interceptor.service';
 import { ErrorInterceptorService } from './auth/login/error-interceptor.service';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { NavComponent } from './shared/nav/nav.component';
-import { FooterComponent } from './shared/footer/footer.component';
-import { HeaderComponent } from './shared/header/header.component';
-import { HomeComponent } from './pages/home/home.component';
-import { ProfileComponent } from './pages/profile/profile.component';
-import { RegisterComponent } from './auth/register/register.component';
-import { CategoryComponent } from './pages/category/category.component';
-import { FormCategoryComponent } from './pages/category/form-category.component';
-import { MatTableModule } from '@angular/material/table';
-import { MatButtonModule } from '@angular/material/button';
+
+import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app.routes';
+
+import { LoginComponent } from '../app/auth/login/login.component';
+import { DashboardComponent } from '../app/pages/dashboard/dashboard.component';
+import { NavComponent } from '../app/shared/nav/nav.component';
+import { FooterComponent } from '../app/shared/footer/footer.component';
+import { HomeComponent } from '../app/pages/home/home.component';
+import { RegisterComponent } from '../app/auth/register/register.component';
+import { CategoryComponent } from '../app/pages/category/category.component';
+import { FormCategoryComponent } from '../app/pages/category/form-category.component';
+
+import { DataTablesModule } from 'angular-datatables';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
     FooterComponent,
     NavComponent,
     DashboardComponent,
     LoginComponent, 
     HomeComponent,
-    ProfileComponent,
     RegisterComponent,
     CategoryComponent,
     FormCategoryComponent
@@ -47,9 +45,8 @@ import { MatButtonModule } from '@angular/material/button';
     ReactiveFormsModule,
     HttpClientModule,
     FontAwesomeModule,
-    MatTableModule,
-    MatButtonModule
-
+    RouterModule,
+    DataTablesModule
   ],
   providers: [
     {provide:HTTP_INTERCEPTORS,useClass:JwtInterceptorService,multi:true},

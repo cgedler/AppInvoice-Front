@@ -1,20 +1,21 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginService } from 'src/app/auth/login/login.service';
+import { LoginService } from '../../auth/login/login.service';
 
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.css']
+  styleUrl: './nav.component.css'
 })
 export class NavComponent implements OnInit {
+  
   userLoginOn:boolean=false;
   constructor(private loginService:LoginService, private router:Router) { }
 
   ngOnInit(): void {
     this.loginService.currentUserLoginOn.subscribe(
       {
-        next:(userLoginOn) => {
+        next:(userLoginOn: boolean) => {
           this.userLoginOn=userLoginOn;
         }
       }

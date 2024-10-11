@@ -7,9 +7,7 @@ import { RegisterComponent } from './auth/register/register.component';
 import { CategoryComponent } from './pages/category/category.component';
 import { FormCategoryComponent } from './pages/category/form-category.component';
 
-const routes: Routes = [
-  //{path:'',redirectTo:'/inicio', pathMatch:'full'},
-  {path:'',component:HomeComponent},
+export const routes: Routes = [ {path:'',component:HomeComponent},
   {path:'dashboard',component:DashboardComponent},
   {path:'login',component:LoginComponent},
   {path:'register',component:RegisterComponent},

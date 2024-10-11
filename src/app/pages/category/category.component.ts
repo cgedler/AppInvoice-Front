@@ -1,19 +1,18 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { LoginService } from 'src/app/auth/login/login.service';
+import { Component, ElementRef, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { LoginService } from '../../auth/login/login.service';
 import { Category } from './category';
 import { CategoryService } from './category.service';
-import { MatTableModule } from '@angular/material/table';
-import { MatButtonModule } from '@angular/material/button';
-
-
-
+import { Config } from 'datatables.net';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
-  styleUrls: ['./category.component.css'],
+  styleUrls: ['./category.component.css']
 })
 export class CategoryComponent implements OnInit {
+
+  dtOptions: Config = {};
 
   userLoginOn:boolean=false;
 
@@ -22,8 +21,15 @@ export class CategoryComponent implements OnInit {
   constructor(
     private loginService:LoginService,
     private categoryService:CategoryService) { }
-
+  
   ngOnInit(): void {
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 10
+    };
+
+   
+
     this.loginService.currentUserLoginOn.subscribe({
       next:(userLoginOn) => {
         this.userLoginOn=userLoginOn;
@@ -31,8 +37,10 @@ export class CategoryComponent implements OnInit {
     });
 
     this.categoryService.getAll().subscribe(
-      cat => this.categories=cat
+      cat => this.categories = cat
     );
+
+   
 
   }
 
@@ -43,5 +51,4 @@ export class CategoryComponent implements OnInit {
       )
     );
   }
-
 }
