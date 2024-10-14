@@ -24,7 +24,9 @@ import { CategoryComponent } from '../app/pages/category/category.component';
 import { FormCategoryComponent } from '../app/pages/category/form-category.component';
 
 import { DataTablesModule } from 'angular-datatables';
-
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -46,11 +48,15 @@ import { DataTablesModule } from 'angular-datatables';
     HttpClientModule,
     FontAwesomeModule,
     RouterModule,
-    DataTablesModule
+    DataTablesModule,
+    MatTableModule,
+    MatSortModule,
+    MatTableModule
   ],
   providers: [
     {provide:HTTP_INTERCEPTORS,useClass:JwtInterceptorService,multi:true},
-    {provide:HTTP_INTERCEPTORS,useClass:ErrorInterceptorService,multi:true}
+    {provide:HTTP_INTERCEPTORS,useClass:ErrorInterceptorService,multi:true},
+    provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
 })
