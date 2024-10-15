@@ -58,4 +58,5 @@ export class LoginComponent implements OnInit {
       alert("Error when entering data.");
     }
   }
+  
 }

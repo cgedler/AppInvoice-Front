@@ -8,12 +8,18 @@ import { RouterModule } from '@angular/router';
 import { FormsModule} from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { JwtInterceptorService } from './auth/login/jwt-interceptor.service';
-import { ErrorInterceptorService } from './auth/login/error-interceptor.service';
-
+import { DataTablesModule } from 'angular-datatables';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { MatIconModule } from '@angular/material/icon';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routes';
-
+//
+import { JwtInterceptorService } from './auth/login/jwt-interceptor.service';
+import { ErrorInterceptorService } from './auth/login/error-interceptor.service';
 import { LoginComponent } from '../app/auth/login/login.component';
 import { DashboardComponent } from '../app/pages/dashboard/dashboard.component';
 import { NavComponent } from '../app/shared/nav/nav.component';
@@ -23,10 +29,6 @@ import { RegisterComponent } from '../app/auth/register/register.component';
 import { CategoryComponent } from '../app/pages/category/category.component';
 import { FormCategoryComponent } from '../app/pages/category/form-category.component';
 
-import { DataTablesModule } from 'angular-datatables';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { MatTableModule } from '@angular/material/table';
-import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,10 @@ import { MatSortModule } from '@angular/material/sort';
     DataTablesModule,
     MatTableModule,
     MatSortModule,
-    MatTableModule
+    MatTableModule,
+    MatIconModule,
+    MatPaginatorModule,
+    MatToolbarModule
   ],
   providers: [
     {provide:HTTP_INTERCEPTORS,useClass:JwtInterceptorService,multi:true},
