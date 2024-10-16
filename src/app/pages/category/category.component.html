@@ -7,29 +7,26 @@
 
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-  <!--- Note that these columns can be defined in any order.
-        The actual rendered columns are set as a property on the row definition" -->
-
-  <!-- Position Column -->
+  <!-- Id Column -->
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef> No. </th>
     <td mat-cell *matCellDef="let element"> {{element.id}} </td>
   </ng-container>
 
-  <!-- Name Column -->
+  <!-- Description Column -->
   <ng-container matColumnDef="description">
     <th mat-header-cell *matHeaderCellDef> Name </th>
     <td mat-cell *matCellDef="let element"> {{element.description}} </td>
   </ng-container>
 
-  <!-- Name Column -->
+  <!-- Actions Column -->
   <ng-container matColumnDef="actions">
-    <th mat-header-cell *matHeaderCellDef>Actions </th>
-    <td mat-cell *matCellDef="let row">
-      <button mat-icon-button matTooltip="Click to Edit" class="btn btn-primary iconbutton">
+    <th mat-header-cell *matHeaderCellDef> Actions </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button matTooltip="Click to Edit" class="btn btn-primary iconbutton" [routerLink]="['/category/form/', element.id]">
           <mat-icon aria-label="Edit">edit</mat-icon>
         </button>
-      <button mat-icon-button matTooltip="Click to Delete" class="btn btn-danger iconbutton">
+      <button mat-icon-button matTooltip="Click to Delete" class="btn btn-danger iconbutton" (click)="delete(element)">
           <mat-icon aria-label="Delete">delete</mat-icon>
         </button>
       </td>
@@ -44,31 +41,5 @@
    [showFirstLastButtons]="true">
 </mat-paginator>
 
-<!-- 
-  <table>
-  <thead>
-      <tr>
-        <th style="width:10%">#</th>
-        <th style="width:70%">Description</th>
-        <th style="width:20%">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let category of categories; let i=index">
-            <td>{{category.id}}</td>
-            <td>{{category.description}}</td>
-            <td with="20">
-              <button type="button" name="button" class="btn btn-primary" [routerLink]="['/category/form/', category.id]"><fa-icon [icon]="['fas', 'pencil']"></fa-icon> Edit</button>
-           
-              <button type="button" name="button" class="btn btn-danger" (click)="delete(category)"><fa-icon [icon]="['fas', 'trash']"></fa-icon> Delete</button>
-            </td>
-        </tr>
-    </tbody>
-</table>
--->
-
-
 <app-footer></app-footer>
-
-
 </div>

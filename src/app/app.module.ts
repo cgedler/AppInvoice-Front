@@ -28,6 +28,22 @@ import { HomeComponent } from '../app/pages/home/home.component';
 import { RegisterComponent } from '../app/auth/register/register.component';
 import { CategoryComponent } from '../app/pages/category/category.component';
 import { FormCategoryComponent } from '../app/pages/category/form-category.component';
+import { BankComponent } from './pages/bank/bank.component';
+import { FormBankComponent } from './pages/bank/form-bank.component';
+import { BillingComponent } from './pages/billing/billing.component';
+import { FormBillingComponent } from './pages/billing/form-billing.component';
+import { CustomersComponent } from './pages/customers/customers.component';
+import { FormCustomersComponent } from './pages/customers/form-customers.component';
+import { FormItemsComponent } from './pages/items/form-items.component';
+import { ItemsComponent } from './pages/items/items.component';
+import { FormSellersComponent } from './pages/sellers/form-sellers.component';
+import { SellersComponent } from './pages/sellers/sellers.component';
+import { FormShoppingComponent } from './pages/shopping/form-shopping.component';
+import { ShoppingComponent } from './pages/shopping/shopping.component';
+import { FormSuppliersComponent } from './pages/suppliers/form-suppliers.component';
+import { SuppliersComponent } from './pages/suppliers/suppliers.component';
+import { FormTaxesComponent } from './pages/taxes/form-taxes.component';
+import { TaxesComponent } from './pages/taxes/taxes.component';
 
 
 @NgModule({
@@ -40,7 +56,23 @@ import { FormCategoryComponent } from '../app/pages/category/form-category.compo
     HomeComponent,
     RegisterComponent,
     CategoryComponent,
-    FormCategoryComponent
+    FormCategoryComponent,
+    BankComponent,
+    FormBankComponent,
+    BillingComponent,
+    FormBillingComponent,
+    CustomersComponent,
+    FormCustomersComponent,
+    ItemsComponent,
+    FormItemsComponent,
+    SellersComponent,
+    FormSellersComponent,
+    ShoppingComponent,
+    FormShoppingComponent,
+    SuppliersComponent,
+    FormSuppliersComponent,
+    TaxesComponent,
+    FormTaxesComponent
   ],
   imports: [
     BrowserModule,

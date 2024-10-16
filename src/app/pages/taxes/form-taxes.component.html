@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            {{title}}
+        </div>
+        <div class="card-body m-0">
+            <form>
+                <div class="form-group row">
+                    <label for="id" class="col-form-label col-sm-2">Id</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="id" [(ngModel)]="taxes.id">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="description" class="col-form-label col-sm-2">Description</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="description" [(ngModel)]="taxes.description">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="tax" class="col-form-label col-sm-2">Tax</label>
+                    <div class="col-sm-6">
+                        <input type="number" class="form-control" name="tax" [(ngModel)]="taxes.tax">
+                    </div>
+                </div>
+                <button class="btn btn-success" role="button" (click)="create()" *ngIf="actionValue=='/taxes/form' else elseBlock">Register</button>
+                <ng-template #elseBlock>
+                    <button class="btn btn-warning" role="button" (click)="update()">Update</button>
+                </ng-template>
+            </form>
+        </div>
+    </div>
+</div>

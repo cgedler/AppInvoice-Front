@@ -1,5 +1,11 @@
-<div style="text-align: center">  login  
-  <h2>  <a [routerLink]="['/register']">SignUp</a> <br><br> </h2>  
-  <h2>  <a [routerLink]="['/login']">Login</a> <br><br> </h2>  
+
+<router-outlet>
+  <div class="jumbotron text-center">
+    <h1>App Invoice</h1>
+    <p>Example of App Invoice with:  <fa-icon [icon]="['fab', 'angular']"></fa-icon> Angular Frontend + <fa-icon [icon]="['fab', 'java']"></fa-icon> Spring Boot Backend + Security JWT Token</p>
+  </div>
+
+<div class="col-sm-12 text-center">
+  <a class="btn btn-default" [routerLink]="['/register']">SignUp</a> <a class="btn btn-default" [routerLink]="['/login']">Login</a>
 </div>  
-<router-outlet></router-outlet>
+</router-outlet>

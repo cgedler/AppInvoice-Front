@@ -12,7 +12,7 @@ export class ItemsService {
   constructor(private http:HttpClient) { }
 
   getAll():Observable<Item[]> {
-    return this.http.get<Item[]>(environment.urlHost + "item/");
+    return this.http.get<Item[]>(environment.urlHost + "item/item");
   }
 
   getById(id:number):Observable<Item> {
