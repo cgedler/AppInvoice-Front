@@ -1,1 +1,105 @@
-s
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h2>{{title}}</h2>
+        </div>
+        <div class="card-body m-0">
+            <form>
+                <div class="form-group row">
+                    <label for="id" class="col-form-label col-sm-2">Id</label>
+                    <div class="col-sm-6">
+                        <input type="number" class="form-control" name="id" [(ngModel)]="shopping.id">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="price" class="col-form-label col-sm-2">Date</label>
+                    <div class="col-sm-6">
+                        <input type="date" class="form-control" name="price" [(ngModel)]="shopping.date">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="description" class="col-form-label col-sm-2">Description</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="description" [(ngModel)]="shopping.description">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="suppliers">Suppliers</label>
+                    <select 
+                        name="suppliers" 
+                        id="suppliers" 
+                        class="form-control"
+                        [(ngModel)]="shopping.suppliers.id">
+                        <option *ngFor="let supplier of suppliers" [value]="supplier.id">{{ supplier.description }}</option>
+                    </select>
+                </div>
+                <div class="form-group row">
+                    <label for="bank">Bank</label>
+                    <select 
+                        name="bank" 
+                        id="bank" 
+                        class="form-control"
+                        [(ngModel)]="shopping.bank.id">
+                        <option *ngFor="let bank of banks" [value]="bank.id">{{ bank.description }}</option>
+                    </select>
+                </div>
+                <div class="form-group row">
+                    <label for="taxes">Taxes</label>
+                    <select 
+                        name="taxes" 
+                        id="taxes" 
+                        class="form-control"
+                        [(ngModel)]="shopping.taxes.id">
+                        <option *ngFor="let tax of taxes" [value]="tax.id">{{ tax.description }}</option>
+                    </select>
+                </div>
+
+
+                
+                <div class="form-group row">
+                    <label for="stock" class="col-form-label col-sm-2">f</label>
+                    <div class="col-sm-6">
+                        <input type="number" class="form-control" name="stock" [(ngModel)]="shopping.subtotal" disabled>
+                    </div>
+                </div>
+                <button class="btn btn-success" role="button" (click)="create()" *ngIf="actionValue=='/shopping/form' else elseBlock">Register</button>
+                <ng-template #elseBlock>
+                    <button class="btn btn-warning" role="button" (click)="update()">Update</button>
+                </ng-template>
+
+                <button type="button" name="button" class="btn btn-primary" (click)="addItem()"><fa-icon [icon]="['fas', 'plus']"></fa-icon> Add</button>
+                
+                <div class="form-group row">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Item</th>
+                            <th>Description</th>
+                            <th>Quantity</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let row of shoppingDetails; let i=index">
+                            <td>{{row.item_id}}</td>
+                            <td>{{row.description}}</td>
+                            <td>{{row.quantity}}</td>
+                            <td>{{row.amount}}</td>
+
+
+                            <td with="20">
+                                
+                                <button type="button" name="button" class="btn btn-danger" (click)="delete()"><fa-icon [icon]="['fas', 'trash']"></fa-icon> Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
+
+
+
+            </form>
+        </div>
+    </div>
+</div>

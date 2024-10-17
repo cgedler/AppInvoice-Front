@@ -27,15 +27,14 @@ export class ShoppingComponent implements OnInit, AfterViewInit {
 
   displayedColumns: string[] = [
     'id',
-    'amount_tax',
     'date',
     'description',
+    'suppliers',
+    'bank',
+    'taxes',
     'subtotal',
+    'amount_tax',
     'total',
-    'bank_id',
-    'customer_id',
-    'seller_id',
-    'taxes_id',
     'actions'];
 
   constructor(

@@ -13,10 +13,58 @@
     <td mat-cell *matCellDef="let element"> {{element.id}} </td>
   </ng-container>
 
+  <!-- Date Column -->
+  <ng-container matColumnDef="date">
+    <th mat-header-cell *matHeaderCellDef> Date </th>
+    <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+  </ng-container>
+
   <!-- Description Column -->
   <ng-container matColumnDef="description">
-    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <th mat-header-cell *matHeaderCellDef> Description </th>
     <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+  </ng-container>
+
+  <!-- Suppliers Column -->
+  <ng-container matColumnDef="suppliers">
+    <th mat-header-cell *matHeaderCellDef> Suppliers </th>
+    <td mat-cell *matCellDef="let element"> {{element.suppliers.description}} </td>
+  </ng-container>
+
+  <!-- Bank Column -->
+  <ng-container matColumnDef="bank">
+    <th mat-header-cell *matHeaderCellDef> Bank </th>
+    <td mat-cell *matCellDef="let element"> {{element.bank.description}} </td>
+  </ng-container>
+
+  <!-- Taxes Column -->
+  <ng-container matColumnDef="bank">
+    <th mat-header-cell *matHeaderCellDef> Taxes</th>
+    <td mat-cell *matCellDef="let element"> {{element.taxes.tax}} </td>
+  </ng-container>
+
+  <!-- Taxes Column -->
+  <ng-container matColumnDef="taxes">
+    <th mat-header-cell *matHeaderCellDef> Taxes </th>
+    <td mat-cell *matCellDef="let element"> {{element.taxes.tax}} </td>
+  </ng-container>
+
+  <!-- Subtotal Column -->
+  <ng-container matColumnDef="subtotal">
+    <th mat-header-cell *matHeaderCellDef> SubtTotal </th>
+    <td mat-cell *matCellDef="let element"> {{element.subtotal}} </td>
+  </ng-container>
+
+  <!-- Total Column -->
+  <ng-container matColumnDef="total">
+    <th mat-header-cell *matHeaderCellDef> Total </th>
+    <td mat-cell *matCellDef="let element"> {{element.total}} </td>
+  </ng-container>
+
+  <!-- AmountTaxes Column -->
+  <ng-container matColumnDef="amount_tax">
+    <th mat-header-cell *matHeaderCellDef> Amount Taxes </th>
+    <td mat-cell *matCellDef="let element"> {{element.amount_tax}} </td>
   </ng-container>
 
   <!-- Actions Column -->

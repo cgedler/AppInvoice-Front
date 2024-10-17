@@ -29,7 +29,7 @@ export class BankComponent implements OnInit, AfterViewInit {
 
   constructor(
     private loginService:LoginService,
-    private BankService:BankService) { }
+    private bankService:BankService) { }
   
   ngOnInit(): void {
 
@@ -39,7 +39,7 @@ export class BankComponent implements OnInit, AfterViewInit {
       }
     });
 
-    this.BankService.getAll().subscribe(
+    this.bankService.getAll().subscribe(
       response => {
         this.banks = response;
         this.dataSource.data = this.banks;
@@ -50,8 +50,8 @@ export class BankComponent implements OnInit, AfterViewInit {
   }
 
   delete(Bank:Bank):void {
-    this.BankService.delete(Bank.id).subscribe(
-      result => this.BankService.getAll().subscribe(
+    this.bankService.delete(Bank.id).subscribe(
+      result => this.bankService.getAll().subscribe(
         response => this.banks = response
       )
     );
