@@ -9,6 +9,8 @@ import { SuppliersService } from '../suppliers/suppliers.service';
 import { TaxesService } from '../taxes/taxes.service';
 import { BankService } from '../bank/bank.service';
 import { ShoppingDetails } from './shoppingDetails';
+import { ItemsService } from '../items/items.service';
+import { Item } from '../items/item';
 
 @Component({
   selector: 'app-form-shopping',
@@ -17,6 +19,8 @@ import { ShoppingDetails } from './shoppingDetails';
 })
 export class FormShoppingComponent implements OnInit {
 
+  
+
   shopping:Shopping = new Shopping();
   title:string = "Register Shopping";
   suppliers:Suppliers[]=[];
@@ -24,14 +28,18 @@ export class FormShoppingComponent implements OnInit {
   taxes:Taxes[]=[];
   actionValue:string = "";
   shoppingDetails:ShoppingDetails[] = [];
+  items:Item[]=[];
 
+  index:number = 0;
+  
   constructor(
     private suppliersService:SuppliersService,
     private bankService:BankService,
     private taxesService:TaxesService,
     private shoppingService:ShoppingService,
     private router:Router,
-    private activateRouter:ActivatedRoute) { }
+    private activateRouter:ActivatedRoute,
+    private ItemService:ItemsService) { }
 
   ngOnInit(): void {
     this.load();
@@ -50,6 +58,11 @@ export class FormShoppingComponent implements OnInit {
     this.taxesService.getAll().subscribe(
       response => {
         this.taxes = response;
+    });
+
+    this.ItemService.getAll().subscribe(
+      response => {
+        this.items = response;
     });
 
   }
@@ -92,3 +105,7 @@ export class FormShoppingComponent implements OnInit {
   } 
   
 }
+function ViewChild(arg0: string): (target: FormShoppingComponent, propertyKey: "myModal") => void {
+  throw new Error('Function not implemented.');
+}
+
