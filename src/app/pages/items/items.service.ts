@@ -19,6 +19,10 @@ export class ItemsService {
     return this.http.get<Item>(environment.urlHost + "item/" + id);
   }
 
+  getItemDataByCategoryId(id:number):Observable<Item[]> {
+    return this.http.get<Item[]>(environment.urlHost + "item/categoryid/" + id);
+  }
+
   create(item:Item):Observable<Item> {
     return this.http.post<Item>(environment.urlHost + "item/add", item);
   }

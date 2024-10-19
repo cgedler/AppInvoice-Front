@@ -63,33 +63,37 @@
                             <div class="col-sm-6">
                                 <label for="categories">Category</label>
                                 <select 
-                                    name="categories" 
-                                    id="categories" 
-                                    class="form-control">
-                                    <option *ngFor="let item of items" [value]="item.id">{{ item.id }} {{ item.description }}</option>
+                                    name="category" 
+                                    id="category"
+                                    #category
+                                    class="form-control"
+                                    (change)="onChangeCategory(category.value)">
+                                    <option *ngFor="let category of categories" [value]="category.id">{{ category.description }}</option>
                                 </select>
                             </div>
                             <div class="col-sm-6">
                                 <label for="item">Item</label>
                                 <select 
                                     name="items" 
-                                    id="items" 
-                                    class="form-control">
+                                    id="items"
+                                    #item
+                                    class="form-control"
+                                    (change)="onChangeItem(item.value)">
                                     <option *ngFor="let item of items" [value]="item.id">{{ item.id }} {{ item.description }}</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <label for="quantity">Quantity</label>
-                            <input type="number" class="form-control" name="quantity">
+                            <input type="number" class="form-control" name="quantity" (change)="onChangeQuantity($event)">
                         </div>
                         <div class="col-sm-2">
                             <label for="price">Price</label>
-                            <input type="number" class="form-control" name="price" disabled>
+                            <input type="text" class="form-control" name="price" disabled value="{{newItemPrice}}">
                         </div>
                         <div class="col-sm-2">
                             <label for="amount">Amount</label>
-                            <input type="number" class="form-control" name="amount" disabled>
+                            <input type="text" class="form-control" name="amount" disabled value="{{newItemAmount}}">
                         </div>
                         <div class="col-sm-2">
                             <button type="button" name="button" class="btn btn-primary" (click)="addItem()"><fa-icon [icon]="['fas', 'plus']"></fa-icon> Add</button>
