@@ -24,8 +24,11 @@ export class FormShoppingComponent implements OnInit {
   shopping:Shopping = new Shopping();
   title:string = "Register Shopping";
   suppliers:Suppliers[]=[];
+  supplier:Suppliers = new Suppliers();
   banks:Bank[]=[];
+  bank:Bank = new Bank();
   taxes:Taxes[]=[];
+  tax:Taxes = new Taxes();
   actionValue:string = "";
   shoppingDetails:ShoppingDetails[] = [];
   items:Item[]=[];
@@ -36,8 +39,11 @@ export class FormShoppingComponent implements OnInit {
   newItemPrice:number = 0;
   newItemAmount:number = 0;
   @Input() element: any;
+  qty:string = "";
+  price:string = "";
+  amount:string = "";
 
-  index:number = 0;
+  index:number = 1;
   
   constructor(
     private suppliersService:SuppliersService,
@@ -72,11 +78,61 @@ export class FormShoppingComponent implements OnInit {
       response => {
         this.categories = response;
     });
-
   }
 
-  onChangeCategory(newValue: string) {
-    this.categorySelectedOption = newValue;
+  onChangesuppliers(supplierId: string) {
+    let num:number = 0;
+    num = Number(supplierId);
+    if (num == 0 ) {
+      num = 1;
+      this.suppliersService.getById(num).subscribe(
+        response => {
+          this.supplier = response;
+      });
+    } else {
+      this.suppliersService.getById(num).subscribe(
+        response => {
+          this.supplier = response;
+      });
+    }
+  }
+
+  onChangeBank(bankId: string) {
+    let num:number = 0;
+    num = Number(bankId);
+    if (num == 0 ) {
+      num = 1;
+      this.bankService.getById(num).subscribe(
+        response => {
+          this.bank = response;
+      });
+    } else {
+      this.bankService.getById(num).subscribe(
+        response => {
+          this.bank = response;
+      });
+    }
+  }
+
+  onChangeTaxes(taxId: string) {
+    let num:number = 0;
+    num = Number(taxId);
+    if (num == 0 ) {
+      num = 1;
+      this.taxesService.getById(num).subscribe(
+        response => {
+          this.tax = response;
+      });
+    } else {
+      this.taxesService.getById(num).subscribe(
+        response => {
+          this.tax = response;
+      });
+    }
+  }
+
+  onChangeCategory(categoryId: string) {
+    this.categorySelectedOption = categoryId;
     let num:number = 0;
     num = Number(this.categorySelectedOption);
     this.itemService.getItemDataByCategoryId(num).subscribe(
@@ -85,36 +141,36 @@ export class FormShoppingComponent implements OnInit {
     });
   }
 
-  onChangeItem(newValue: string) {
-    this.itemSelectedOption = newValue;
-    console.log(`Selected option: ${this.itemSelectedOption}`);
-    
+  onChangeItem(itemId: string) {
+    this.itemSelectedOption = itemId;
     let num:number = 0;
     num = Number(this.itemSelectedOption);
     this.itemService.getById(num).subscribe(
           elementGet => this.newItem = elementGet
     );
-
-    console.log(this.newItem);
-
     this.newItemPrice = this.newItem.price.price;
-    
-    //crear un item y cargarlo con los datos del servicio item
-    
   }
 
   onChangeQuantity(event: Event) {
-    const newValuet = (event.target as HTMLInputElement).value;
-    console.log('Input value changed:', newValuet);
-
+    const qty = (event.target as HTMLInputElement).value;
     let num:number = 0;
-    num = Number(newValuet);
+    num = Number(qty);
     this.newItemAmount = this.newItemPrice * num;
-
   }
 
   create():void {
-    this.shoppingService.create(this.shopping).subscribe(
+    let newShopping:Shopping = new Shopping();
+    newShopping.id = this.shopping.id;
+    newShopping.date = this.shopping.date;
+    newShopping.description = this.shopping.description;
+    newShopping.supplier = this.supplier;
+    newShopping.bank = this.bank;
+    newShopping.taxes = this.tax;
+    newShopping.subtotal = this.shopping.subtotal;
+    newShopping.amount_tax = this.shopping.amount_tax;
+    newShopping.total = this.shopping.total;
+    newShopping.shoppingDetails  = this.shoppingDetails;
+    this.shoppingService.create(newShopping).subscribe(
       res => this.router.navigate(['shopping'])
     )
 
@@ -143,13 +199,17 @@ export class FormShoppingComponent implements OnInit {
 
   addItem():void {
     let item:ShoppingDetails = new ShoppingDetails();
-    item.id = 1;
-    item.item_id = 2;
-    item.quantity = 3;
-    item.amount = 43; 
+    let itemqty:number = Number(this.qty);
+    item.id = this.index;
+    item.description = this.newItem.id + ' ' + this.newItem.description;
+    item.item = this.newItem;
+    item.quantity = itemqty;
+    item.amount = this.newItemAmount; 
     this.shoppingDetails.push(item);
+    this.index = this.index + 1;
+    this.shopping.subtotal = this.shoppingDetails.map(t => t.amount).reduce((acc, value) => acc + value, 0);
+    this.shopping.amount_tax = (this.tax.tax * this.shopping.subtotal) / 100;
+    this.shopping.total = this.shopping.subtotal + this.shopping.amount_tax;
   } 
-  
+
 }
-
-

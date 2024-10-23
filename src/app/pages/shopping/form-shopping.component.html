@@ -8,27 +8,29 @@
                 <div class="form-group row">
                     <div class="col-sm-3">
                         <label for="id" class="col-form-label col-sm-2">Id</label>
-                        <input type="number" class="form-control" name="id" [(ngModel)]="shopping.id">
+                        <input type="number" class="form-control" name="shoppind_id" [(ngModel)]="shopping.id">
                     </div>
                     <div class="col-sm-6">
                         <label for="date" class="col-form-label col-sm-2">Date</label>
-                        <input type="date" class="form-control" name="price" [(ngModel)]="shopping.date">
+                        <input type="date" class="form-control" name="shoppind_date" [(ngModel)]="shopping.date">
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-12">
                         <label for="description" class="col-form-label col-sm-2">Description</label>
-                        <input type="text" class="form-control" name="description" [(ngModel)]="shopping.description">
+                        <input type="text" class="form-control" name="shoppind_description" [(ngModel)]="shopping.description">
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-10">
                         <label for="suppliers">Suppliers</label>
                         <select 
-                            name="suppliers" 
-                            id="suppliers" 
+                            name="shoppind_suppliers" 
+                            id="suppliers"
+                            #supplier
                             class="form-control"
-                            [(ngModel)]="shopping.suppliers.id">
+                            [(ngModel)]="shopping.supplier.id"
+                            (change)="onChangesuppliers(tax.value)">
                             <option *ngFor="let supplier of suppliers" [value]="supplier.id">{{ supplier.description }}</option>
                         </select>
                     </div>
@@ -37,20 +39,24 @@
                     <div class="col-sm-5">
                         <label for="bank">Bank</label>
                         <select 
-                            name="bank" 
-                            id="bank" 
+                            name="shoppind_bank" 
+                            id="bank"
+                            #bank 
                             class="form-control"
-                            [(ngModel)]="shopping.bank.id">
+                            [(ngModel)]="shopping.bank.id"
+                            (change)="onChangeBank(tax.value)">
                             <option *ngFor="let bank of banks" [value]="bank.id">{{ bank.description }}</option>
                         </select>
                     </div>
                     <div class="col-sm-5">
                         <label for="taxes">Taxes</label>
                         <select 
-                            name="taxes" 
-                            id="taxes" 
+                            name="shoppind_taxes" 
+                            id="taxes"
+                            #tax
                             class="form-control"
-                            [(ngModel)]="shopping.taxes.id">
+                            [(ngModel)]="shopping.taxes.id"
+                            (change)="onChangeTaxes(tax.value)">
                             <option *ngFor="let tax of taxes" [value]="tax.id">{{ tax.description }}</option>
                         </select>
                     </div>
@@ -63,7 +69,7 @@
                             <div class="col-sm-6">
                                 <label for="categories">Category</label>
                                 <select 
-                                    name="category" 
+                                    name="shoppind_category" 
                                     id="category"
                                     #category
                                     class="form-control"
@@ -74,7 +80,7 @@
                             <div class="col-sm-6">
                                 <label for="item">Item</label>
                                 <select 
-                                    name="items" 
+                                    name="shoppind_items" 
                                     id="items"
                                     #item
                                     class="form-control"
@@ -85,65 +91,71 @@
                         </div>
                         <div class="col-sm-2">
                             <label for="quantity">Quantity</label>
-                            <input type="number" class="form-control" name="quantity" (change)="onChangeQuantity($event)">
+                            <input type="number" class="form-control" name="item_quantity" (change)="onChangeQuantity($event)" [(ngModel)]="qty" >
                         </div>
                         <div class="col-sm-2">
                             <label for="price">Price</label>
-                            <input type="text" class="form-control" name="price" disabled value="{{newItemPrice}}">
+                            <input type="text" class="form-control" name="item_price" disabled value="{{newItemPrice}}" [(ngModel)]="price">
                         </div>
                         <div class="col-sm-2">
                             <label for="amount">Amount</label>
-                            <input type="text" class="form-control" name="amount" disabled value="{{newItemAmount}}">
+                            <input type="text" class="form-control" name="item_amount" disabled value="{{newItemAmount}}" [(ngModel)]="amount">
                         </div>
                         <div class="col-sm-2">
-                            <button type="button" name="button" class="btn btn-primary" (click)="addItem()"><fa-icon [icon]="['fas', 'plus']"></fa-icon> Add</button>
+                            <button type="button" name="item_add_button" class="btn btn-primary" (click)="addItem()"><fa-icon [icon]="['fas', 'plus']"></fa-icon> Add</button>
                         </div>
                     </fieldset>
-                </div>
-                </div>
-                
-                <div class="form-group row">
-                    <label for="stock" class="col-form-label col-sm-2">f</label>
-                    <div class="col-sm-6">
-                        <input type="number" class="form-control" name="stock" [(ngModel)]="shopping.subtotal" disabled>
                     </div>
                 </div>
-                <button class="btn btn-success" role="button" (click)="create()" *ngIf="actionValue=='/shopping/form' else elseBlock">Register</button>
-                <ng-template #elseBlock>
-                    <button class="btn btn-warning" role="button" (click)="update()">Update</button>
-                </ng-template>
-
-                
                 <div class="form-group row">
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>ind</th>
-                            <th>Item</th>
+                            <th>id</th>
                             <th>Description</th>
                             <th>Quantity</th>
+                            <th>Price</th>
                             <th>Amount</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let row of shoppingDetails; let i=index">
-                            <td>{{row.item_id}}</td>
+                            <td>{{row.id}}</td>
                             <td>{{row.description}}</td>
                             <td>{{row.quantity}}</td>
+                            <td>{{row.item.price.price}}</td>
                             <td>{{row.amount}}</td>
-
-
                             <td with="20">
-                                
                                 <button type="button" name="button" class="btn btn-danger" (click)="delete()"><fa-icon [icon]="['fas', 'trash']"></fa-icon> Delete</button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
                 </div>
-
-
-
+                <hr>
+                <div class="form-group row">
+                    <label for="subtotal" class="col-form-label col-sm-2">Sub Total</label>
+                    <div class="col-sm-6">
+                        <input type="number" class="form-control" name="shoppind_subtotal" [(ngModel)]="shopping.subtotal" disabled>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="amount_tax" class="col-form-label col-sm-2">Tax Total</label>
+                    <div class="col-sm-6">
+                        <input type="number" class="form-control" name="shoppind_amount_tax" [(ngModel)]="shopping.amount_tax" disabled>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="total" class="col-form-label col-sm-2">Total</label>
+                    <div class="col-sm-6">
+                        <input type="number" class="form-control" name="shoppind_total" [(ngModel)]="shopping.total" disabled>
+                    </div>
+                </div>
+                <button class="btn btn-success" role="button" (click)="create()" *ngIf="actionValue=='/shopping/form' else elseBlock">Register</button>
+                <ng-template #elseBlock>
+                    <button class="btn btn-warning" role="button" (click)="update()">Update</button>
+                </ng-template>
             </form>
         </div>
     </div>
