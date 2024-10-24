@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { Shopping } from './shopping';
 import { ShoppingService } from './shopping.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-shopping',
@@ -39,7 +40,8 @@ export class ShoppingComponent implements OnInit, AfterViewInit {
 
   constructor(
     private loginService:LoginService,
-    private ShoppingService:ShoppingService) { }
+    private shoppingService:ShoppingService,
+    private router:Router) { }
   
   ngOnInit(): void {
 
@@ -49,7 +51,7 @@ export class ShoppingComponent implements OnInit, AfterViewInit {
       }
     });
 
-    this.ShoppingService.getAll().subscribe(
+    this.shoppingService.getAll().subscribe(
       response => {
         this.shoppings = response;
         this.dataSource.data = this.shoppings;
@@ -60,11 +62,13 @@ export class ShoppingComponent implements OnInit, AfterViewInit {
   }
 
   delete(Shopping:Shopping):void {
-    this.ShoppingService.delete(Shopping.id).subscribe(
-      result => this.ShoppingService.getAll().subscribe(
-        response => this.shoppings = response
-      )
-    );
+    this.shoppingService.delete(Shopping.id).subscribe(
+      result => {
+        this.shoppingService.getAll().subscribe(
+          response => this.shoppings = response,      
+        )
+      })
+      this.ngOnInit();//-------
   }
 
 }

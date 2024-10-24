@@ -1,1 +1,176 @@
-<p>form-billing works!</p>
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h2>{{title}}</h2>
+        </div>
+        <div class="card-body m-0">
+            <form>
+                <div class="form-group row">
+                    <div class="col-sm-3">
+                        <label for="id" class="col-form-label col-sm-2">Id</label>
+                        <input type="number" class="form-control" name="shoppind_id" [(ngModel)]="billing.id">
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="date" class="col-form-label col-sm-2">Date</label>
+                        <input type="date" class="form-control" name="shoppind_date" [(ngModel)]="billing.date">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-12">
+                        <label for="description" class="col-form-label col-sm-2">Description</label>
+                        <input type="text" class="form-control" name="shoppind_description" [(ngModel)]="billing.description">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-10">
+                        <label for="customers">Customers</label>
+                        <select 
+                            name="billing_customers" 
+                            id="customers"
+                            #customer
+                            class="form-control"
+                            [(ngModel)]="billing.customer.id"
+                            (change)="onChangeCustomers(customer.value)">
+                            <option *ngFor="let customer of customers" [value]="customer.id">{{ customer.description }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-10">
+                        <label for="sellers">Sellers</label>
+                        <select 
+                            name="billing_sellers" 
+                            id="sellers"
+                            #seller
+                            class="form-control"
+                            [(ngModel)]="billing.seller.id"
+                            (change)="onChangeSellers(seller.value)">
+                            <option *ngFor="let seller of sellers" [value]="seller.id">{{ seller.description }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-5">
+                        <label for="bank">Bank</label>
+                        <select 
+                            name="shoppind_bank" 
+                            id="bank"
+                            #bank 
+                            class="form-control"
+                            [(ngModel)]="billing.bank.id"
+                            (change)="onChangeBank(bank.value)">
+                            <option *ngFor="let bank of banks" [value]="bank.id">{{ bank.description }}</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-5">
+                        <label for="taxes">Taxes</label>
+                        <select 
+                            name="shoppind_taxes" 
+                            id="taxes"
+                            #tax
+                            class="form-control"
+                            [(ngModel)]="billing.taxes.id"
+                            (change)="onChangeTaxes(tax.value)">
+                            <option *ngFor="let tax of taxes" [value]="tax.id">{{ tax.description }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-12">
+                    <fieldset>
+                        <legend>Add Item:</legend>
+                        <div class="form-group row">
+                            <div class="col-sm-6">
+                                <label for="categories">Category</label>
+                                <select 
+                                    name="shoppind_category" 
+                                    id="category"
+                                    #category
+                                    class="form-control"
+                                    (change)="onChangeCategory(category.value)">
+                                    <option *ngFor="let category of categories" [value]="category.id">{{ category.description }}</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="item">Item</label>
+                                <select 
+                                    name="shoppind_items" 
+                                    id="items"
+                                    #item
+                                    class="form-control"
+                                    (change)="onChangeItem(item.value)">
+                                    <option *ngFor="let item of items" [value]="item.id">{{ item.id }} {{ item.description }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label for="quantity">Quantity</label>
+                            <input type="number" class="form-control" name="item_quantity" (change)="onChangeQuantity($event)" [(ngModel)]="qty" >
+                        </div>
+                        <div class="col-sm-2">
+                            <label for="price">Price</label>
+                            <input type="text" class="form-control" name="item_price" disabled value="{{newItemPrice}}" [(ngModel)]="price">
+                        </div>
+                        <div class="col-sm-2">
+                            <label for="amount">Amount</label>
+                            <input type="text" class="form-control" name="item_amount" disabled value="{{newItemAmount}}" [(ngModel)]="amount">
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" name="item_add_button" class="btn btn-primary" (click)="addItem()"><fa-icon [icon]="['fas', 'plus']"></fa-icon> Add</button>
+                        </div>
+                    </fieldset>
+                    </div>
+                </div>
+                <div class="form-group row">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Description</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Amount</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let row of billingDetails; let i=index">
+                            <td>{{row.id}}</td>
+                            <td>{{row.description}}</td>
+                            <td>{{row.quantity}}</td>
+                            <td>{{row.item.price.price}}</td>
+                            <td>{{row.amount}}</td>
+                            <td with="20">
+                                <button type="button" name="button" class="btn btn-danger" (click)="delete()"><fa-icon [icon]="['fas', 'trash']"></fa-icon> Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
+                <hr>
+                <div class="form-group row">
+                    <label for="subtotal" class="col-form-label col-sm-2">Sub Total</label>
+                    <div class="col-sm-6">
+                        <input type="number" class="form-control" name="shoppind_subtotal" [(ngModel)]="billing.subtotal" disabled>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="amount_tax" class="col-form-label col-sm-2">Tax Total</label>
+                    <div class="col-sm-6">
+                        <input type="number" class="form-control" name="shoppind_amount_tax" [(ngModel)]="billing.amount_tax" disabled>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="total" class="col-form-label col-sm-2">Total</label>
+                    <div class="col-sm-6">
+                        <input type="number" class="form-control" name="shoppind_total" [(ngModel)]="billing.total" disabled>
+                    </div>
+                </div>
+                <button class="btn btn-success" role="button" (click)="create()" *ngIf="actionValue=='/billing/form' else elseBlock">Register</button>
+                <ng-template #elseBlock>
+                    <button class="btn btn-warning" role="button" (click)="update()">Update</button>
+                </ng-template>
+            </form>
+        </div>
+    </div>
+</div>

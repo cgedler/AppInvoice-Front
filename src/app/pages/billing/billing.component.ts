@@ -27,15 +27,15 @@ export class BillingComponent implements OnInit, AfterViewInit {
 
   displayedColumns: string[] = [
     'id',
-    'amount_tax',
     'date',
     'description',
-    'subtotal',
-    'total',
-    'bank_id',
     'customer_id',
     'seller_id',
+    'bank_id',
     'taxes_id',
+    'subtotal',
+    'amount_tax',
+    'total',
     'actions'];
 
   constructor(

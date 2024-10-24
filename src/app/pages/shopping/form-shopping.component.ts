@@ -42,7 +42,6 @@ export class FormShoppingComponent implements OnInit {
   qty:string = "";
   price:string = "";
   amount:string = "";
-
   index:number = 1;
   
   constructor(
@@ -80,7 +79,7 @@ export class FormShoppingComponent implements OnInit {
     });
   }
 
-  onChangesuppliers(supplierId: string) {
+  onChangeSuppliers(supplierId: string) {
     let num:number = 0;
     num = Number(supplierId);
     if (num == 0 ) {
@@ -173,7 +172,6 @@ export class FormShoppingComponent implements OnInit {
     this.shoppingService.create(newShopping).subscribe(
       res => this.router.navigate(['shopping'])
     )
-
   }
 
   load():void {

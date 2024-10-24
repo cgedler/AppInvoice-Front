@@ -30,7 +30,7 @@
                             #supplier
                             class="form-control"
                             [(ngModel)]="shopping.supplier.id"
-                            (change)="onChangesuppliers(tax.value)">
+                            (change)="onChangeSuppliers(supplier.value)">
                             <option *ngFor="let supplier of suppliers" [value]="supplier.id">{{ supplier.description }}</option>
                         </select>
                     </div>
@@ -44,7 +44,7 @@
                             #bank 
                             class="form-control"
                             [(ngModel)]="shopping.bank.id"
-                            (change)="onChangeBank(tax.value)">
+                            (change)="onChangeBank(bank.value)">
                             <option *ngFor="let bank of banks" [value]="bank.id">{{ bank.description }}</option>
                         </select>
                     </div>

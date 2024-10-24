@@ -13,6 +13,6 @@ export class Shopping {
     public bank: Bank = new Bank;
     public supplier: Suppliers = new Suppliers;
     public taxes: Taxes = new Taxes;
-    shoppingDetails:ShoppingDetails[] = [];
+    shoppingDetails: ShoppingDetails[] = [];
     public constructor() {}
 }
