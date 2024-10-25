@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { Billing } from './billing';
 import { BillingService } from './billing.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-billing',
@@ -40,7 +41,8 @@ export class BillingComponent implements OnInit, AfterViewInit {
 
   constructor(
     private loginService:LoginService,
-    private BillingService:BillingService) { }
+    private BillingService:BillingService,
+    private router:Router) { }
   
   ngOnInit(): void {
 

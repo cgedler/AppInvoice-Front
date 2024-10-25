@@ -57,4 +57,12 @@ export class CustomersComponent implements OnInit, AfterViewInit {
     );
   }
 
+  pdf():void {
+    this.CustomersService.getAll().subscribe(
+      response => {
+        //const file = new Blob([response], { type: 'application/pdf' });
+        //const fileURL = URL.createObjectURL(file);
+        //window.open(fileURL);
+    });
+
 }

@@ -16,6 +16,18 @@ export class CustomersService {
     return this.http.get<Customers[]>(environment.urlHost + "customer/");
   }
 
+  getAllPdf():Observable<Customers[]> {
+    return this.http.get<Customers[]>(environment.urlHost + "customer/pdf");
+  }
+
+  printPdf(id:number): any {
+    const httpOptions = {
+      responseType: 'arraybuffer' as 'json'
+      // 'responseType'  : 'blob' as 'json'        //This also worked
+    };
+    return this.http.get<any>(environment.urlHost + "customer/jasperpdf/export/" + id, httpOptions);
+  }
+
   getById(id:number):Observable<Customers> {
     return this.http.get<Customers>(environment.urlHost + "customer/" + id);
   }
