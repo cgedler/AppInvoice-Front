@@ -5,6 +5,9 @@
 
 <button class="btn btn-success" type="button" [routerLink]="['/customers/form']"><fa-icon [icon]="['fas', 'plus']"></fa-icon> New</button> 
 
+<button class="btn btn-success" type="button" (click)="printPdf()"><fa-icon [icon]="['fas', 'plus']"></fa-icon> Pdf</button>
+<button class="btn btn-success" type="button" (click)="printXls()"><fa-icon [icon]="['fas', 'plus']"></fa-icon> Xls</button> 
+
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
   <!-- Id Column -->
