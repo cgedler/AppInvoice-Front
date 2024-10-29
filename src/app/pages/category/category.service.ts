@@ -15,6 +15,27 @@ export class CategoryService {
     return this.http.get<Category[]>(environment.urlHost + "item/category/");
   }
 
+  printPdf(id:number): any {
+    const httpOptions = {
+      responseType: 'arraybuffer' as 'json'
+    };
+    return this.http.get<any>(environment.urlHost + 'item/category/pdf/' + id, httpOptions);
+  }
+
+  printListPdf(): any {
+    const httpOptions = {
+      responseType: 'arraybuffer' as 'json'
+    };
+    return this.http.get<any>(environment.urlHost + 'item/category/pdf', httpOptions);
+  }
+
+  printListXls(): any {
+    const httpOptions = {
+      responseType: 'arraybuffer' as 'json'
+    };
+    return this.http.get<any>(environment.urlHost + 'item/category/xls', httpOptions);
+  }
+
   getById(id:number):Observable<Category> {
     return this.http.get<Category>(environment.urlHost + "item/category/" + id);
   }

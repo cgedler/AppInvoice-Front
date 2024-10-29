@@ -15,6 +15,27 @@ export class TaxesService {
     return this.http.get<Taxes[]>(environment.urlHost + "taxes/");
   }
 
+  printPdf(id:number): any {
+    const httpOptions = {
+      responseType: 'arraybuffer' as 'json'
+    };
+    return this.http.get<any>(environment.urlHost + 'taxes/pdf/' + id, httpOptions);
+  }
+
+  printListPdf(): any {
+    const httpOptions = {
+      responseType: 'arraybuffer' as 'json'
+    };
+    return this.http.get<any>(environment.urlHost + 'taxes/pdf', httpOptions);
+  }
+
+  printListXls(): any {
+    const httpOptions = {
+      responseType: 'arraybuffer' as 'json'
+    };
+    return this.http.get<any>(environment.urlHost + 'taxes/xls', httpOptions);
+  }
+
   getById(id:number):Observable<Taxes> {
     return this.http.get<Taxes>(environment.urlHost + "taxes/" + id);
   }

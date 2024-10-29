@@ -4,9 +4,8 @@
 <h2>Customers</h2>
 
 <button class="btn btn-success" type="button" [routerLink]="['/customers/form']"><fa-icon [icon]="['fas', 'plus']"></fa-icon> New</button> 
-
-<button class="btn btn-success" type="button" (click)="printPdf()"><fa-icon [icon]="['fas', 'plus']"></fa-icon> Pdf</button>
-<button class="btn btn-success" type="button" (click)="printXls()"><fa-icon [icon]="['fas', 'plus']"></fa-icon> Xls</button> 
+<button class="btn btn-success" type="button" (click)="printListPdf()"><fa-icon [icon]="['fas', 'file-pdf']"></fa-icon> Print List</button>
+<button class="btn btn-success" type="button" (click)="printListXls()"><fa-icon [icon]="['fas', 'file-excel']"></fa-icon> Export List</button> 
 
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
@@ -26,6 +25,9 @@
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef> Actions </th>
     <td mat-cell *matCellDef="let element">
+      <button mat-icon-button matTooltip="Click to Edit" class="btn btn-warning iconbutton"  (click)="printPdf(element)" >
+        <mat-icon aria-label="Print">print</mat-icon>
+      </button>
       <button mat-icon-button matTooltip="Click to Edit" class="btn btn-primary iconbutton" [routerLink]="['/customers/form/', element.id]">
           <mat-icon aria-label="Edit">edit</mat-icon>
         </button>

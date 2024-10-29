@@ -57,4 +57,28 @@ export class TaxesComponent implements OnInit, AfterViewInit {
     );
   }
 
+  printPdf(Taxes:Taxes) {
+    this.TaxesService.printPdf(Taxes.id).subscribe((response: BlobPart) => {
+      const file = new Blob([response], { type: 'application/pdf' });
+      const fileURL = URL.createObjectURL(file);
+      window.open(fileURL);
+    });
+  }
+
+  printListPdf() {
+    this.TaxesService.printListPdf().subscribe((response: BlobPart) => {
+      const file = new Blob([response], { type: 'application/pdf' });
+      const fileURL = URL.createObjectURL(file);
+      window.open(fileURL);
+    });
+  }
+
+  printListXls() {
+    this.TaxesService.printListXls().subscribe((response: BlobPart) => {
+      const file = new Blob([response], { type: 'application/xls' });
+      const fileURL = URL.createObjectURL(file);
+      window.open(fileURL);
+    });
+  }
+
 }

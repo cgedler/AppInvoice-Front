@@ -15,6 +15,27 @@ export class ItemsService {
     return this.http.get<Item[]>(environment.urlHost + "item/item");
   }
 
+  printPdf(id:number): any {
+    const httpOptions = {
+      responseType: 'arraybuffer' as 'json'
+    };
+    return this.http.get<any>(environment.urlHost + 'item/pdf/' + id, httpOptions);
+  }
+
+  printListPdf(): any {
+    const httpOptions = {
+      responseType: 'arraybuffer' as 'json'
+    };
+    return this.http.get<any>(environment.urlHost + 'item/pdf', httpOptions);
+  }
+
+  printListXls(): any {
+    const httpOptions = {
+      responseType: 'arraybuffer' as 'json'
+    };
+    return this.http.get<any>(environment.urlHost + 'item/xls', httpOptions);
+  }
+
   getById(id:number):Observable<Item> {
     return this.http.get<Item>(environment.urlHost + "item/" + id);
   }

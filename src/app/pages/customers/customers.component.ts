@@ -43,7 +43,7 @@ export class CustomersComponent implements OnInit, AfterViewInit {
       response => {
         this.customers = response;
         this.dataSource.data = this.customers;
-        this.dataSource.sort = this.sort;
+         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
     });
 
@@ -57,16 +57,24 @@ export class CustomersComponent implements OnInit, AfterViewInit {
     );
   }
 
-  printPdf() {
-    this.CustomersService.printPdf().subscribe((response: BlobPart) => {
+ printPdf(Customers:Customers) {
+    this.CustomersService.printPdf(Customers.id).subscribe((response: BlobPart) => {
       const file = new Blob([response], { type: 'application/pdf' });
       const fileURL = URL.createObjectURL(file);
       window.open(fileURL);
     });
   }
 
-  printXls() {
-    this.CustomersService.printXls().subscribe((response: BlobPart) => {
+  printListPdf() {
+    this.CustomersService.printListPdf().subscribe((response: BlobPart) => {
+      const file = new Blob([response], { type: 'application/pdf' });
+      const fileURL = URL.createObjectURL(file);
+      window.open(fileURL);
+    });
+  }
+
+  printListXls() {
+    this.CustomersService.printListXls().subscribe((response: BlobPart) => {
       const file = new Blob([response], { type: 'application/xls' });
       const fileURL = URL.createObjectURL(file);
       window.open(fileURL);

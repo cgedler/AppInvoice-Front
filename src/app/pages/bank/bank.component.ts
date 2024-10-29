@@ -57,4 +57,28 @@ export class BankComponent implements OnInit, AfterViewInit {
     );
   }
 
+  printPdf(Bank:Bank) {
+    this.bankService.printPdf(Bank.id).subscribe((response: BlobPart) => {
+      const file = new Blob([response], { type: 'application/pdf' });
+      const fileURL = URL.createObjectURL(file);
+      window.open(fileURL);
+    });
+  }
+
+  printListPdf() {
+    this.bankService.printListPdf().subscribe((response: BlobPart) => {
+      const file = new Blob([response], { type: 'application/pdf' });
+      const fileURL = URL.createObjectURL(file);
+      window.open(fileURL);
+    });
+  }
+
+  printListXls() {
+    this.bankService.printListXls().subscribe((response: BlobPart) => {
+      const file = new Blob([response], { type: 'application/xls' });
+      const fileURL = URL.createObjectURL(file);
+      window.open(fileURL);
+    });
+  }
+
 }

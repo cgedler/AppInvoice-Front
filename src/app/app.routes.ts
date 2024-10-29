@@ -23,7 +23,6 @@ import { SuppliersComponent } from './pages/suppliers/suppliers.component';
 import { FormTaxesComponent } from './pages/taxes/form-taxes.component';
 import { TaxesComponent } from './pages/taxes/taxes.component';
 
-
 export const routes: Routes = [ {path:'',component:HomeComponent},
   {path:'dashboard',component:DashboardComponent},
   {path:'login',component:LoginComponent},

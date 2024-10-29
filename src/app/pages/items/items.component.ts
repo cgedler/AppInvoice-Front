@@ -58,4 +58,28 @@ export class ItemsComponent implements OnInit, AfterViewInit {
     );
   }
 
+  printPdf(Item:Item) {
+    this.ItemService.printPdf(Item.id).subscribe((response: BlobPart) => {
+      const file = new Blob([response], { type: 'application/pdf' });
+      const fileURL = URL.createObjectURL(file);
+      window.open(fileURL);
+    });
+  }
+
+  printListPdf() {
+    this.ItemService.printListPdf().subscribe((response: BlobPart) => {
+      const file = new Blob([response], { type: 'application/pdf' });
+      const fileURL = URL.createObjectURL(file);
+      window.open(fileURL);
+    });
+  }
+
+  printListXls() {
+    this.ItemService.printListXls().subscribe((response: BlobPart) => {
+      const file = new Blob([response], { type: 'application/xls' });
+      const fileURL = URL.createObjectURL(file);
+      window.open(fileURL);
+    });
+  }
+
 }

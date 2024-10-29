@@ -46,8 +46,6 @@ export class CategoryComponent implements OnInit, AfterViewInit  {
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
     });
-    //console.log('Mostrar la data------');
-    //console.log(this.dataSource.data);
 
   }
 
@@ -58,5 +56,30 @@ export class CategoryComponent implements OnInit, AfterViewInit  {
       )
     );
   }
+
+  printPdf(Category:Category) {
+    this.categoryService.printPdf(Category.id).subscribe((response: BlobPart) => {
+      const file = new Blob([response], { type: 'application/pdf' });
+      const fileURL = URL.createObjectURL(file);
+      window.open(fileURL);
+    });
+  }
+
+  printListPdf() {
+    this.categoryService.printListPdf().subscribe((response: BlobPart) => {
+      const file = new Blob([response], { type: 'application/pdf' });
+      const fileURL = URL.createObjectURL(file);
+      window.open(fileURL);
+    });
+  }
+
+  printListXls() {
+    this.categoryService.printListXls().subscribe((response: BlobPart) => {
+      const file = new Blob([response], { type: 'application/xls' });
+      const fileURL = URL.createObjectURL(file);
+      window.open(fileURL);
+    });
+  }
+
 
 }

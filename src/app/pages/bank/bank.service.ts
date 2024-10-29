@@ -16,6 +16,27 @@ export class BankService {
     return this.http.get<Bank[]>(environment.urlHost + "bank/");
   }
 
+  printPdf(id:number): any {
+    const httpOptions = {
+      responseType: 'arraybuffer' as 'json'
+    };
+    return this.http.get<any>(environment.urlHost + 'bank/pdf/' + id, httpOptions);
+  }
+
+  printListPdf(): any {
+    const httpOptions = {
+      responseType: 'arraybuffer' as 'json'
+    };
+    return this.http.get<any>(environment.urlHost + 'bank/pdf', httpOptions);
+  }
+
+  printListXls(): any {
+    const httpOptions = {
+      responseType: 'arraybuffer' as 'json'
+    };
+    return this.http.get<any>(environment.urlHost + 'bank/xls', httpOptions);
+  }
+
   getById(id:number):Observable<Bank> {
     return this.http.get<Bank>(environment.urlHost + "bank/" + id);
   }
