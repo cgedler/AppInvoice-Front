@@ -45,7 +45,6 @@ import { SuppliersComponent } from './pages/suppliers/suppliers.component';
 import { FormTaxesComponent } from './pages/taxes/form-taxes.component';
 import { TaxesComponent } from './pages/taxes/taxes.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,

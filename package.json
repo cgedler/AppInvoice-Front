@@ -31,6 +31,7 @@
     "angular-datatables": "^18.0.0",
     "app-invoice": "file:",
     "bootstrap": "^3.3.7",
+    "chart.js": "^4.4.6",
     "datatables.net": "^2.1.8",
     "datatables.net-dt": "^2.1.8",
     "express": "^4.18.2",
