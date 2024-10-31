@@ -1,6 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { LoginService } from '../../auth/login/login.service';
 import Chart from 'chart.js/auto';
+import { ShoppingByYearDTO } from './shoppingByYearDTO';
+import { DashboardService } from './dashboard.service';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
+import { response } from 'express';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,8 +19,12 @@ export class DashboardComponent implements OnInit {
   userLoginOn:boolean=false;
   username:String="";
   chart: any = [];
+  shoppingData: ShoppingByYearDTO = new ShoppingByYearDTO();
+ 
 
-  constructor(private loginService:LoginService) { }
+  constructor(
+    private loginService:LoginService,
+    private dashboardService:DashboardService) { }
 
   ngOnInit(): void {
     this.loginService.currentUserLoginOn.subscribe({
@@ -22,7 +33,14 @@ export class DashboardComponent implements OnInit {
       }
     });
 
-    this.username = this.loginService.currentUserName;
+    this.dashboardService.getDataByYear(2021).subscribe(
+      data => { this.shoppingData = (data); }
+    );
+    
+    
+
+    console.log(this.shoppingData);
+
 
     this.chart = new Chart('ctx', {
       type: 'bar',
@@ -31,7 +49,7 @@ export class DashboardComponent implements OnInit {
         datasets: [
           {
             label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3, 4, 1, 7, 8, 9, 12],
+            data: [4, 19.5, 3, 5, 2, 3, 4, 1, 7, 8, 9, 12],
             borderWidth: 1,
           },
         ],
@@ -45,5 +63,7 @@ export class DashboardComponent implements OnInit {
       },
     });
 
+    this.username = this.loginService.currentUserName;
   }
+
 }
