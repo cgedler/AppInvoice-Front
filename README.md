@@ -1,27 +1,24 @@
 # AppInvoice
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.8.
+This project consists of the development of an Angular application that serves as the Frontend of a REST service with Spring Boot that implements Spring Security for security and authentication based on JWT Tokens. It simulates a very simple administrative application with a few very basic modules and fields in each of its entities.
 
-## Development server
+The system has several modules:
+- An Accounts Receivable module
+- An accounts payable module
+- A finance module
+- An Inventory module
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+The application is not complete with all the administrative modules that must be present in an application of this type, the application is still under construction.
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+# Screenshots
+![page1](docs/images/AppInvoice.png)
+![page1](docs/images/Login.png)
+![page1](docs/images/Dashboard.png)
+![page1](docs/images/CustomerM.png)
+![page1](docs/images/CustomerListToPDF.png)
+![page1](docs/images/CustomerListToExcel.png)
+![page1](docs/images/CustomerToPDF.png)
+![page1](docs/images/RegisterItem.png)
+![page1](docs/images/ItemsM.png)
+![page1](docs/images/SellerM.png)

@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
-import { ShoppingByYearDTO } from './shoppingByYearDTO';
-import { HttpClient, HttpResponse } from '@angular/common/http';
-import { map, Observable, throwError } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
+import { Observable } from 'rxjs';
+import { ShoppingByYearDTO } from './shoppingByYearDTO';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DashboardService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient) {}
 
-  getDataByYear(year:number):Observable<ShoppingByYearDTO> {
-    return this.http.get<ShoppingByYearDTO>(environment.urlHost + "shopping/year/" + year).pipe(map(data => data));
+  getDataByYear(year:number): Observable<ShoppingByYearDTO>{
+    return this.http.get<ShoppingByYearDTO>(environment.urlHost + "shopping/year/" + year);
   }
 
 }
